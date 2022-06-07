@@ -4,17 +4,18 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
+	"log"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
-	"log"
 
 	pb "go.protobuf.playground.exchange/play/me/resources/books/v1"
 )
 
 func main() {
 
-	// Create a client connection to the books service.
-	host := "resources-books-v1-z5x5ywf7za-ew.a.run.app:443"
+	// Create a client connection to the books server.
+	host := "resources-books-v1-g4upl6muba-ew.a.run.app:443"
 	conn, err := NewConn(context.Background(), host, false)
 	if err != nil {
 		log.Fatal(err)
@@ -26,8 +27,13 @@ func main() {
 	// Call the ListBooks method on the client library
 	books, err := client.ListBooks(context.Background(), &pb.ListBooksRequest{})
 	if err != nil {
-		log.Println(books)
+		log.Println(err)
 	}
+
+	log.Println(books)
+
+	// See what other methods are available on the client by typing 'client.'
+
 }
 
 // NewConn creates a client connection to a gRPC server.
