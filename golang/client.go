@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
-	pb "go.protobuf.playground.exchange/play/me/resources/books/v1"
+	pb "external.go.protobuf.playground.exchange/play/me/resources/books/v1"
 )
 
 func main() {
