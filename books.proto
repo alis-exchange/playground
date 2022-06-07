@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package play.me.resources.books.v1;
+
+import "google/protobuf/empty.proto";
+import "google/api/resource.proto";
+import "google/api/field_behavior.proto";
+import "google/api/client.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+import "google/type/date.proto";
+
+option go_package = "go.protobuf.play.alis.exchange/play/me/resources/books/v1";
+
+
+// Book service for play.me.
+service BooksService {
+     // Create a book.
+     rpc CreateBook(CreateBookRequest) returns (Book) {
+     	option (google.api.http) = {
+     		post: "/resources/store/v1/books"
+     		body: "book"
+     	};
+     	option (google.api.method_signature) = "book";
+     }
+    // Get a book.
+    rpc GetBook(GetBookRequest) returns (Book) {
+        option (google.api.http) = {
+            get: "/resources/store/v1/{name=books/*}"
+        };
+        option (google.api.method_signature) = "name";
+    }
+     // Delete a book.
+     rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {
+     	option (google.api.http) = {
+     		delete: "/resources/store/v1/{name=books/*}"
+     	};
+     	option (google.api.method_signature) = "name";
+     }
+    // List books.
+    // Features are listed in Descending order.
+    rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {
+        option (google.api.http) = {
+            get: "/resources/store/v1/books"
+        };
+    }
+}
+
+//A book resource
+message Book {
+
+    //Name of the book in the format: books/{book}.
+    string name = 1 [(google.api.field_behavior) = OUTPUT_ONLY];
+
+    //The display name of the book.
+    string display_name = 2 [(google.api.field_behavior) = REQUIRED];
+
+    //The authors of the book.
+    repeated string authors = 3 [(google.api.field_behavior) = REQUIRED];
+
+    //The publisher of the book
+    string publisher = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+ // Request message for [play.me.resources.books.v1.Service.CreateBook].
+ message CreateBookRequest {
+ 	// The book to create
+ 	Book book = 1 [(google.api.field_behavior) = REQUIRED];
+ }
+
+// Request message for [play.me.resources.books.v1.Service.GetBook].
+message GetBookRequest {
+    // The book name is the unique identifier across organisations.
+    // Format: books/{book}
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+// Request message for [play.me.resources.books.v1.Service.ListBooks].
+message ListBooksRequest {
+    // The maximum number of books to return. The service may return fewer than
+    // this value.
+    // If unspecified, at most 100 books will be returned.
+    // The maximum value is 1000; values above 1000 will be coerced to 1000.
+    int32 page_size = 1 [(google.api.field_behavior) = OPTIONAL];
+}
+
+ // Request message for [play.me.resources.books.v1.Service.DeleteBook].
+ message DeleteBookRequest {
+ 	// The resource name of the Book.
+ 	// Format: books/{book}.
+ 	string name = 1 [(google.api.field_behavior) = REQUIRED];
+ }
+
+message ListBooksResponse {
+    // The books
+    repeated Book books = 1 [(google.api.field_behavior) = REQUIRED];
+}
