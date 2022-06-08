@@ -3,7 +3,7 @@ module myapp
 go 1.18
 
 require (
-	go.protobuf.playground.exchange v0.0.0-20220526144043-815264b32ae2
+	external.go.protobuf.playground.exchange v0.0.0-20220607144824-f4254dd4c63f
 	google.golang.org/grpc v1.47.0
 )
 
