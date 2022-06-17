@@ -4,6 +4,8 @@ import (
 	"context"
 	"log"
 
+	// TODO: ensure your GOPRIVATE golang env is set to point to this private library
+	//   GOPRIVATE=external.go.protobuf.playground.exchange
 	pb "external.go.protobuf.playground.exchange/play/me/resources/books/v1"
 )
 
