@@ -12,7 +12,7 @@ import (
 func main() {
 
 	// Create a client connection to the books server.
-	host := "resources-books-v1-g4upl6muba-ew.a.run.app:443"
+	host := "internal-e0okt3nx.ew.gateway.dev:443"
 	conn, err := NewConn(context.Background(), host, false)
 	if err != nil {
 		log.Fatal(err)
