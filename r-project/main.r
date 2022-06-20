@@ -1,7 +1,7 @@
 # Load the package
 library(bigrquery)
 
-# Ensure are logged in to make the Bigquery hit
+# Ensure you are logged in to make the Bigquery hit
 # Run 'gcloud auth application-default login'
 
 # Store the project ID
