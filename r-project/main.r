@@ -1,7 +1,11 @@
 # Load the package
 library(bigrquery)
 
+# Ensure are logged in to make the Bigquery hit
+# Run 'gcloud auth application-default login'
+
 # Store the project ID
+# Run 'gcloud info' to determine which project you have currently set at your default.
 projectid = "PROJECT_ID"
 
 # Set your query
