@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package play.me.resources.books.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+
+option go_package = "go.protobuf.playground.exchange/play/me/resources/books/v1";
+
+
+// Book service for play.me.
+service BooksService {
+  // Create a book.
+  rpc CreateBook(CreateBookRequest) returns (Book) {}
+  // Get a book.
+  rpc GetBook(GetBookRequest) returns (Book) {}
+  // Delete a book.
+  rpc DeleteBook(DeleteBookRequest) returns (google.protobuf.Empty) {}
+  // List books.
+  // Features are listed in Descending order.
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse) {}
+}
+
+//A book resource
+message Book {
+
+  //Name of the book in the format: books/{book}.
+  string name = 1;
+
+  //The display name of the book.
+  string display_name = 2;
+
+  //The authors of the book.
+  repeated string authors = 3;
+
+  //The publisher of the book
+  string publisher = 4;
+}
+
+// Request message for [play.me.resources.books.v1.Service.CreateBook].
+message CreateBookRequest {
+  // The book to create
+  Book book = 1 ;
+}
+
+// Request message for [play.me.resources.books.v1.Service.GetBook].
+message GetBookRequest {
+  // The book name is the unique identifier across organisations.
+  // Format: books/{book}
+  string name = 1;
+}
+
+// Request message for [play.me.resources.books.v1.Service.ListBooks].
+message ListBooksRequest {
+  // The maximum number of books to return. The service may return fewer than
+  // this value.
+  // If unspecified, at most 100 books will be returned.
+  // The maximum value is 1000; values above 1000 will be coerced to 1000.
+  int32 page_size = 1;
+}
+
+// Request message for [play.me.resources.books.v1.Service.DeleteBook].
+message DeleteBookRequest {
+  // The resource name of the Book.
+  // Format: books/{book}.
+  string name = 1;
+}
+
+message ListBooksResponse {
+  // The books
+  repeated Book books = 1 ;
+}
