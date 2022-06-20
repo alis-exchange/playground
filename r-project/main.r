@@ -2,10 +2,13 @@
 library(bigrquery)
 
 # Ensure you are logged in to make the Bigquery hit
-# Run 'gcloud auth application-default login'
+# The Bigquery library makes use of your Google Cloud Identity credential flow which provides a
+# secure and seamless way to access the relevant data / apis / etc.
+# Follow the 3 steps outlined at https://docs.alis.exchange/guides/command-line-interface.html#google-cloud-sdk
+# to sort out your authentication.
 
 # Store the project ID
-# Run 'gcloud info' to determine which project you have currently set at your default.
+# Run 'gcloud projects list' to determine which project(s) you have available.
 projectid <- "YOUR-PROJECT"
 
 # Set your query
