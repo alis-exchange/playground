@@ -6,7 +6,7 @@ library(bigrquery)
 
 # Store the project ID
 # Run 'gcloud info' to determine which project you have currently set at your default.
-projectid = "PROJECT_ID"
+projectid <- "YOUR-PROJECT"
 
 # Set your query
 sql <- "SELECT * FROM `bigquery-public-data.usa_names.usa_1910_current` LIMIT 10"
